@@ -6,11 +6,14 @@ public class TuningTrouble
 	{
 		string filePath = "...";
 
+		// length in part 1 is 4;
+		int sequenceLength = 14;
+
 		var part1 = File.ReadAllLines(filePath)
 			.Select(
 				line => {
-					string firstMatch = new string(line.SkipWhile((c, idx) => line.Substring(idx, 14).Distinct().Count() < 14).Take(14).ToArray());
-					return line.IndexOf(firstMatch) + 14;
+					string firstMatch = new string(line.SkipWhile((c, idx) => line.Substring(idx, sequenceLength).Distinct().Count() < sequenceLength).Take(sequenceLength).ToArray());
+					return line.IndexOf(firstMatch) + sequenceLength;
 					}
 			).ToList();
 

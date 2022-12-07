@@ -39,8 +39,11 @@ public class SupplyStacks
 
 			Stack<char> load = new Stack<char>();
 
+			//for part 1 just push directly from one stack to the other without the "load" stack
+
 			for(int i = 0; i < task.Amount; i++)
 			{
+				
 				load.Push(stacks[task.From - 1].Pop());
 			}
 

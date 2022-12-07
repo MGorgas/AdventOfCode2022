@@ -7,8 +7,6 @@ public class CalorieCounting
 
 	public static void StartDay1()
 	{
-
-
 		string filepath = "...";
 		int topX = 3;
 		var output = File.ReadAllText(filepath)

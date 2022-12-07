@@ -17,13 +17,10 @@ public class NoSpaceLeftOnDevice
 
 		List<EDirectory> allDirectories = new();
 		allDirectories.Add(root);
-		//int line = 1;
-
 
 		string lastCommand = "";
 		foreach (var commandOrOutput in commandsAndOutputs)
 		{
-			//Console.WriteLine($"{line++} {commandOrOutput}");
 			string[] parsed = commandOrOutput.Split(' ');
 			switch (parsed[0])
 			{
@@ -71,6 +68,12 @@ public class NoSpaceLeftOnDevice
 			}
 		}
 
+		// part1
+		var summOfSmallDirectories = allDirectories.Where(d => d.Size <= 100000).Sum(d => d.Size);
+		Console.WriteLine(summOfSmallDirectories);
+
+
+		// part 2
 		long currentlyAvailableSpace = overallsize - root.Size;
 		long minimumFreeingSize = updateSize - currentlyAvailableSpace;
 
@@ -84,6 +87,9 @@ public class NoSpaceLeftOnDevice
 		{
 			Console.WriteLine(String.Format("{0,10}{1,10}",d.Name, d.Size));
 		}
+
+
+
 	}
 
 	public enum ElementType
