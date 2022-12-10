@@ -7,6 +7,7 @@ using Day6;
 using Day7;
 using Day8;
 using Day9;
+using Day10;
 
 //CalorieCounting.StartDay1();
 //RockPaperScissorsGame.StartDay2();
@@ -16,6 +17,7 @@ using Day9;
 //TuningTrouble.StartDay6();
 //NoSpaceLeftOnDevice.StartDay7();
 //TreetopTreeHouse.StartDay8();
-RopeBridge.StartDay9();
+//RopeBridge.StartDay9();
+CathodeRayTube.StartDay10();
 
 Console.ReadLine();
