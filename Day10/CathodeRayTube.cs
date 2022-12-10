@@ -6,7 +6,7 @@ public class CathodeRayTube
 {
 	public static void StartDay10()
 	{
-		string filePath = "C:\\Users\\Martin\\source\\repos\\AdventOfCode2022\\Day10\\input.txt";
+		string filePath = "...";
 		var programLines = File.ReadAllLines(filePath).AsEnumerable();
 
 		int registerX = 1;
