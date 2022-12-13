@@ -10,6 +10,7 @@ using Day9;
 using Day10;
 using Day11;
 using Day12;
+using Day13;
 
 //CalorieCounting.StartDay1();
 //RockPaperScissorsGame.StartDay2();
@@ -22,6 +23,8 @@ using Day12;
 //RopeBridge.StartDay9();
 //CathodeRayTube.StartDay10();
 //MonkeyInTheMiddle.StartDay11();
-HillClimbingAlgorithm.StartDay12();
+//HillClimbingAlgorithm.StartDay12();
+DistressSignal.StartDay13();
+//Day13.Other.Solve();
 
 Console.ReadLine();
