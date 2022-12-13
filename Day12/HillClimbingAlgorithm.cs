@@ -4,9 +4,10 @@ using System.Xml.Linq;
 
 public class HillClimbingAlgorithm
 {
+	public static string filepath = "...";
+
 	public static void StartDay12()
 	{
-		string filepath = "C:\\Users\\Martin\\source\\repos\\AdventOfCode2022\\Day12\\data.txt";
 		bool isPartOne = false;
 
 		string[] lines = File.ReadAllLines(filepath);
@@ -92,6 +93,61 @@ public class HillClimbingAlgorithm
 		}
 
 		Console.WriteLine($"Shortest path has {end.Counter} steps");
+	}
+
+	public static void StartDay12_2(bool isPart2 = false)
+	{
+		string filecontent = File.ReadAllText(filepath);
+		int linelength = filecontent.IndexOf(Environment.NewLine);
+		string textMap = filecontent.Replace(Environment.NewLine, string.Empty);
+		int start = textMap.IndexOf('S');
+		int end = textMap.IndexOf('E');
+		(char Height, int Counter)[] map = textMap.Select(c => (c == 'S' ? 'a' : c == 'E' ? 'z' : c, -1)).ToArray();
+
+
+		HashSet<int> positions = new();
+		
+		if (!isPart2)
+		{
+			positions.Add(start);
+			map[start].Counter = 0;
+		}
+		else
+		{
+			List<int> lowPositions = map.Select((position, index) => position.Height == 'a' ? index : -1).Where(i => i != -1).ToList();
+			lowPositions.ForEach(l => {
+					map[l].Counter = 0;
+					positions.Add(l);
+				});
+		}
+
+		while (!positions.Contains(end))
+		{
+			List<int> temp = new();
+			foreach(int position in positions)
+			{
+				int currentX = position % linelength;
+				int currentY = position / linelength;
+
+				new List<Action<Action<int>>>{
+					{ (action) => {if (currentX - 1 >= 0)						action(position - 1); } },				
+					{ (action) => {if (currentX + 1 < linelength)				action(position + 1); } },				
+					{ (action) => {if (currentY - 1 >= 0)						action(position - linelength); } },				
+					{ (action) => {if (currentY + 1 < map.Length / linelength)  action(position + linelength); } },
+				}
+				.ForEach(action => action((np) =>
+				{
+					if (map[np].Counter == -1 && map[np].Height - map[position].Height <= 1)
+					{
+						map[np].Counter = map[position].Counter + 1;
+						temp.Add(np);
+					}
+				}));
+			}
+			temp.ForEach(t => positions.Add(t));
+		}
+
+		Console.WriteLine(map[end].Counter);
 	}
 }
 

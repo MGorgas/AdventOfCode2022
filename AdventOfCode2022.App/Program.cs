@@ -24,7 +24,7 @@ using Day13;
 //CathodeRayTube.StartDay10();
 //MonkeyInTheMiddle.StartDay11();
 //HillClimbingAlgorithm.StartDay12();
-DistressSignal.StartDay13();
-//Day13.Other.Solve();
+HillClimbingAlgorithm.StartDay12_2(true);
+//DistressSignal.StartDay13();
 
 Console.ReadLine();

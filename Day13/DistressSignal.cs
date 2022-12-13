@@ -11,7 +11,7 @@ public class DistressSignal
 {
 	public static void StartDay13()
 	{
-		string filepath = "C:\\Users\\Martin\\source\\repos\\AdventOfCode2022\\Day13\\input.txt";
+		string filepath = "...";
 		List<string> packages = File.ReadAllText(filepath).Split(Environment.NewLine + Environment.NewLine).ToList();
 
 		int sumOfValidIndicies = 0;
