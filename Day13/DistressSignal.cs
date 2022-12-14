@@ -5,13 +5,15 @@ using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 public class DistressSignal
 {
+	public static string filepath = "C:\\Users\\Martin\\source\\repos\\AdventOfCode2022\\Day13\\data.txt";
+
 	public static void StartDay13()
 	{
-		string filepath = "...";
 		List<string> packages = File.ReadAllText(filepath).Split(Environment.NewLine + Environment.NewLine).ToList();
 
 		int sumOfValidIndicies = 0;
@@ -51,8 +53,53 @@ public class DistressSignal
 		Console.WriteLine($"The decoder key for the distress signal is: {part2Result}");
 	}
 
+	public static void StartDay13_2()
+	{
+		// learned about JsonNode/JsonArray and Enumerable.Zip from @https://github.com/encse
+		IEnumerable<JsonNode[]> packageSet = File.ReadAllText(filepath).Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(i => JsonNode.Parse(i)).Chunk(2);
+
+		var part1result = packageSet.Select((p, i) => ComparePackages(p[0], p[1]) < 1 ? i+1 : -1).Where(i => i > -1).Sum();
+
+		JsonNode del1 = JsonNode.Parse("[[2]]");
+		JsonNode del2 = JsonNode.Parse("[[6]]");
+		var part2packageSet = packageSet.SelectMany(i => i).Concat(new[] {del1, del2}).ToList();
+
+		part2packageSet.Sort(ComparePackages);
 
 
+		Console.WriteLine(part1result);
+		Console.WriteLine((part2packageSet.IndexOf(del1) + 1) * (part2packageSet.IndexOf(del2) + 1));
+	}
+
+	private static int ComparePackages(JsonNode left, JsonNode? right)
+	{
+		if(left is JsonValue && right is JsonValue)
+		{
+			return Math.Sign((int)left - (int)right);
+		}
+		else
+		{
+			JsonArray leftArray = left as JsonArray ?? new JsonArray((int)left);
+			JsonArray rightArray = right as JsonArray ?? new JsonArray((int)right);
+
+			return  Enumerable.Zip(leftArray, rightArray)
+							  .Select(e => ComparePackages(e.First, e.Second))
+							  .FirstOrDefault(c => c != 0, Math.Sign(leftArray.Count - rightArray.Count));
+		}
+
+	}
+
+	private static int ComparePackages(string left, string right)
+	{
+		var leftNode = JsonNode.Parse(left);
+		var rightNode = JsonNode.Parse(right);
+
+		if(leftNode is JsonValue && rightNode is JsonValue)
+		{
+			return Math.Sign((int)leftNode - (int)rightNode);
+		}
+		return 0;
+	}
 	public static string[] Unpack(string data)
 	{
 		string current = data;
@@ -189,5 +236,13 @@ public class DistressSignal
 		}
 
 		return returnValue;
+	}
+}
+
+public static class EnumerableExtensions
+{
+	public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, params T[] items)
+	{
+		return enumerable.Concat(items);
 	}
 }
