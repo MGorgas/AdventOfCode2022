@@ -13,6 +13,7 @@ using Day12;
 using Day13;
 using Day14;
 using Day15;
+using Day16;
 
 //CalorieCounting.StartDay1();
 //RockPaperScissorsGame.StartDay2();
@@ -29,6 +30,7 @@ using Day15;
 //HillClimbingAlgorithm.StartDay12_2(true);
 //DistressSignal.StartDay13();
 //RegolithReservoir.StartDay14(true);
-BeaconExclusiveZone.StartDay15();
+//BeaconExclusiveZone.StartDay15();
+ProboscideaVolcanium.StartDay16();
 
 Console.ReadLine();
