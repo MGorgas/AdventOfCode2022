@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2022.App;
 
 
-Day17.PyroclasticFlow();
+Day18.BuilingBoulders();
 
 Console.ReadLine();
