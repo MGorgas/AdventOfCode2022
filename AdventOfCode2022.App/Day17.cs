@@ -12,27 +12,15 @@ using static AdventOfCode2022.App.Day17;
 
 public class Day17
 {
-	public static string filepath = @"C:\Users\Martin\source\repos\AdventOfCode2022\AdventOfCode2022.App\day17.txt";
+	public static string filepath = @"";
 
 	public static void PyroclasticFlow()
 	{
 		int[] directions = File.ReadAllText(filepath).Select(c => c == '>' ? 1 : -1).ToArray();
 
-		/*
-		- using bits
-		- create rock
-		- put rock in highest point in cave
-		- rock falls to bottom or at least lowest possible
-		- insert a new rock three rows higher than the highest point of the current structure in the cave
-		- after all rocks are fallen, remove all empty lines in the list and count the amount of rows in the list
-
-		>> OPTIMIZATION
-		If there is a path which connects the left to the right path
-		delete everything below the lowest point of this path to reduce the size of the list
-		BUT store the "deleted height" in a separate value for later addition to the rest
-		*/
 
 		RockShape[] rockOrder = { RockShape.BarHorizontal, RockShape.Plus, RockShape.FlippedL, RockShape.BarVertical, RockShape.Block };
+
 		Stopwatch stopwatch = Stopwatch.StartNew();
 		Console.WriteLine($"Part 1: {SimulateCave(2022, directions, rockOrder)}");
 		stopwatch.Stop();
@@ -54,6 +42,7 @@ public class Day17
 		HashSet<State> stateLookup = new(new StateComparer());
 		List<State> stones = new();
 		bool firstSetOfStonesFallen = false;
+		// -------------------------------------------------------
 
 		int blowDirection = 0;
 		for (long rockNr = 0; rockNr < amountRocksToFall; rockNr++)
@@ -133,9 +122,12 @@ public class Day17
 
 
 					long amountPatterns = (amountRocksToFall / amountRocksInRepeatingPattern);
+
 					long restAmount = amountRocksToFall - (amountRocksInRepeatingPattern * amountPatterns + lastStoneBeforePattern.RockNr);
+
+					// the rest amount needs to be the stone AFTER the detected pattern beginns
 					State rest = stones[(int)(firstAppearenceOfRepeatingPattern.RockNr - 1 + restAmount - 1)];
-					 // we want the last stone before the current stone caused the if statement to trigger this section
+					
 
 
 					long height = (amountPatterns * patternCaveHeight) + lastStoneBeforePattern.CaveHeight + (rest.CaveHeight - lastStoneBeforePattern.CaveHeight);
@@ -144,23 +136,7 @@ public class Day17
 			}
 			stones.Add(state);
 
-
-
-
-			//List<int> pattern = TrimCave(ref cave);
-			//if(pattern.Count > 0)
-			//{
-			//	patterns.Add(pattern);
-			//}
-			//result += pattern.Count;
-			//if (amountTrimmed > 0)
-			//{
-			//	Console.WriteLine($"Cave trimmed by {amountTrimmed} rows.");
-			//}
-
-
 		}
-		//result += cave.Count();
 		return result;
 	}
 
