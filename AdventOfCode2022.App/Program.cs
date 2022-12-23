@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2022.App;
 
 
-Day18.BuilingBoulders();
+Day19.NotEnoughMinerals();
 
 Console.ReadLine();
