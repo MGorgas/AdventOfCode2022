@@ -12,7 +12,7 @@ using static global::AdventOfCode2022.App.Day16;
 
 public class Day16
 {
-	public static string filepath = @"C:\Users\Martin\source\repos\AdventOfCode2022\AdventOfCode2022.App\t_day16.txt";
+	public static string filepath = @"";
 	public static void ProboscideaVolcanium()
 	{
 

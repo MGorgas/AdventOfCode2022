@@ -12,7 +12,7 @@ using static AdventOfCode2022.App.Day17;
 
 public class Day17
 {
-	public static string filepath = @"C:\Users\Martin\source\repos\AdventOfCode2022\AdventOfCode2022.App\day18_t.txt";
+	public static string filepath = @"";
 
 	public static void PyroclasticFlow()
 	{

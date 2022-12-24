@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 public class Day18
 {
 
-	public static string filepath = @"C:\Users\Martin\source\repos\AdventOfCode2022\AdventOfCode2022.App\day18.txt";
+	public static string filepath = @"";
 
 	public static void BuilingBoulders()
 	{

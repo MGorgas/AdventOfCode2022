@@ -152,7 +152,7 @@ public class Day12
 	}
 }
 
-public static class ListExtensions
+public static partial class ListExtensions
 {
 	public static void AddIf<T>(this List<T> enumerable, Func<bool> ifStatement, T item)
 	{

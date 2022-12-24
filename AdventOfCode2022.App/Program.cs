@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2022.App;
 
 
-Day19.NotEnoughMinerals();
+Day20.GrovePositioningSystem();
 
 Console.ReadLine();
