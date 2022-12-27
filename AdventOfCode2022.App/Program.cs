@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2022.App;
 
 
-Day20.GrovePositioningSystem();
+Day21.MonkeyMath();
 
 Console.ReadLine();

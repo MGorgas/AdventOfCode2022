@@ -11,25 +11,21 @@ using System.Threading.Tasks;
 
 public class Day20
 {
-    public static string filepath = @"C:\Users\Martin\source\repos\AdventOfCode2022\AdventOfCode2022.App\day20_t.txt";
+    public static string filepath = @"";
 
     public static void GrovePositioningSystem()
     {
         List<(int Index, long Value)> message = File.ReadAllLines(filepath).Select((number, index) => (index, long.Parse(number))).ToList();
-
 
         long result = 0;
 
         result = GetMixResult(message);
         Console.WriteLine($"Part 1: {result}");
 
-
         long decryptionKey = 811589153;
         List<(int Index, long Value)> part2 = new(message);
         result = GetMixResult(message,10, value => value * decryptionKey);
-        Console.WriteLine($"Part 2: {result}"); // 5449009573242 to high
-                                                // 3760092545849
-
+        Console.WriteLine($"Part 2: {result}");
     }
 
     private static long GetMixResult(List<(int Index, long Value)> message, int mixingTimes = 1, Func<long, long> applyDecryptionMethod = null)
